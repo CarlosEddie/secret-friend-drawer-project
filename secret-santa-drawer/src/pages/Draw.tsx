@@ -26,6 +26,7 @@ const Draw = () => {
                 <h2>Who will take the paper?</h2>
                 <form onSubmit={draw}>
                     <select name="participantOfTheTime" id="participantOfTheTime" placeholder="Select your name" value={participantOfTheTime} onChange={event => setParticipantOfTheTime(event.target.value)}>
+                        <option>Select your name</option>
                         {participants.map(participant => <option key={participant} >{participant}</option>)}
                     </select>
                     <button className="button-draw">Draw</button>

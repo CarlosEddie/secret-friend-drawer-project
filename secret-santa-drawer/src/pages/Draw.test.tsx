@@ -34,7 +34,7 @@ describe('in the draw page', () => {
         render(<RecoilRoot> <Draw /> </RecoilRoot>)
 
         const options = screen.queryAllByRole('option')
-        expect(options).toHaveLength(participants.length)
+        expect(options).toHaveLength(participants.length + 1)
     })
 
     test('The secret santa is displayed when requested', () => {
