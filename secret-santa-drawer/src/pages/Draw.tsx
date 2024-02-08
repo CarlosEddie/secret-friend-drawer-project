@@ -17,6 +17,9 @@ const Draw = () => {
         event.preventDefault()
         if (result.has(participantOfTheTime)) {
             setSecretSanta(result.get(participantOfTheTime)!)
+            setTimeout(() => {
+                setSecretSanta('')
+            }, 5000)
         }
     }
 
@@ -29,6 +32,7 @@ const Draw = () => {
                         <option>Select your name</option>
                         {participants.map(participant => <option key={participant} >{participant}</option>)}
                     </select>
+                    <p>Click the draw button to see who your secret santa is!</p>
                     <button className="button-draw">Draw</button>
                 </form>
                 {secretSanta && <p className="result" role="alert">{secretSanta}</p>}

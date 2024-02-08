@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react"
+import { act, fireEvent, render, screen } from "@testing-library/react"
 import { useParticipantsList } from "../state/hook/useParticipantsList"
 import { RecoilRoot } from "recoil"
 import Draw from "./Draw"
@@ -58,5 +58,26 @@ describe('in the draw page', () => {
 
         expect(secretSanta).toBeInTheDocument()
 
+    })
+
+    test('hides the secret santa drawn after 5 seconds', async () => {
+        jest.useFakeTimers();
+
+        render(
+            <RecoilRoot>
+                <Draw />
+            </RecoilRoot>
+        )
+
+        const select = screen.getByPlaceholderText('Select your name')
+        fireEvent.change(select, { target: { value: participants[1] } })
+
+        const button = screen.getByRole('button')
+        fireEvent.click(button)
+        act(() => {
+            jest.runAllTimers();
+        })
+        const alert = screen.queryByRole('alert')
+        expect(alert).not.toBeInTheDocument()
     })
 })
